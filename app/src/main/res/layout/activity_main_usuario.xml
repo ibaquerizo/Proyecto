@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivityUsuario">
 
 
     <Button
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:text="Registrar Conductor"
+        android:text="Registrar Usuario"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,6 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btnExisteUsuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailUsuario" />
 
@@ -98,10 +97,10 @@
 
     <TextView
         android:id="@+id/textUsuarrio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="34dp"
         android:layout_marginTop="76dp"
-        android:text="CONDUCTOR"
+        android:text="  USUARIO"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/NameUsuario"
         app:layout_constraintEnd_toEndOf="parent"

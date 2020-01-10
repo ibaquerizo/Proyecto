@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityUsuario extends AppCompatActivity {
     private EditText txtnombre,txtmail,txtpassword;
     private Button inicio,existe;
     FirebaseAuth mAuth;
@@ -52,20 +52,20 @@ public class MainActivity extends AppCompatActivity {
                         registerUser();
                     }
                     else{
-                        Toast.makeText(MainActivity.this,"Password al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivityUsuario.this,"Password al menos 6 caracteres", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else{
-                    Toast.makeText(MainActivity.this,"Debe completar los campos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivityUsuario.this,"Debe completar los campos", Toast.LENGTH_SHORT).show();
                 }
             }
-            });
+        });
         existe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent (MainActivity.this,Inicio_sesion.class ));
+                startActivity(new Intent (MainActivityUsuario.this,Inicio_sesion.class ));
             }
         });
 
@@ -75,37 +75,38 @@ public class MainActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-               if (task.isSuccessful()){
-                   Map<String,Object> map=new HashMap<>();
-                   map.put("name",nombre);
-                   map.put("email",mail);
-                   map.put("password",password);
+                if (task.isSuccessful()){
+                    Map<String,Object> map=new HashMap<>();
+                    map.put("name",nombre);
+                    map.put("email",mail);
+                    map.put("password",password);
 
 
-                   String id= mAuth.getCurrentUser().getUid();
+                    String id= mAuth.getCurrentUser().getUid();
 
-                   mDatabase.child("Usuario").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                       @Override
-                       public void onComplete(@NonNull Task<Void> task2) {
-                           if (task2.isSuccessful()){
-                               startActivity(new Intent(MainActivity.this,Inicio_sesion.class));
-                               finish();
+                    mDatabase.child("Usuario").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task2) {
+                            if (task2.isSuccessful()){
+                                startActivity(new Intent(MainActivityUsuario.this,Inicio_sesion.class));
+                                finish();
 
-                           }
-                           else{
-                               Toast.makeText(MainActivity.this,"No se pudo crear los datos correctamente", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(MainActivityUsuario.this,"No se pudo crear los datos correctamente", Toast.LENGTH_SHORT).show();
 
-                           }
-                       }
-                   });
-               }
-               else{
-                   Toast.makeText(MainActivity.this,"No se pudo registrar este usuario", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(MainActivityUsuario.this,"No se pudo registrar este usuario", Toast.LENGTH_SHORT).show();
 
-               }
+                }
             }
         });
     }
 
 
 }
+
